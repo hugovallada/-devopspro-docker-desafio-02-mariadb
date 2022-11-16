@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  maria-sql:
+    name: maria-sql
+
+services:
+
+  mariadb:
+    image: mariadb:10.9
+    container_name: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    networks:
+      - maria-sql
+
+  admin:
+    image: phpmyadmin:5.2.0
+    container_name: php-my-admin
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mariadb
+    networks:
+      - maria-sql

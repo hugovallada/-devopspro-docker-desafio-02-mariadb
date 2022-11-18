@@ -23,3 +23,5 @@ services:
       PMA_HOST: mariadb
     networks:
       - maria-sql
+    depends_on:
+      - mariadb
